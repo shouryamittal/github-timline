@@ -1,0 +1,6 @@
+{
+    "development":{
+        "DB_URL" : "mongodb://localhost:27017/gt",
+        "PORT" : 3000
+    }
+}

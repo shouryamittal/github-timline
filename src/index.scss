@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+.d-flex {
+    display: flex;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-row {
+    flex-direction: row;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-space-between {
+    justify-content: space-between;
+}
+.justify-space-evenly {
+    justify-content: space-evenly;
+}
+.justify-space-around {
+    justify-content: space-around;
+}
+.align-items-center {
+    align-items: center;
+}
+.position-relative {
+    position: relative;
+}
+.text-center {
+    text-align: center;
+}

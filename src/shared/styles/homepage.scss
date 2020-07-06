@@ -1,0 +1,40 @@
+@import './mixin/mixin';
+@import './theme';
+.homePage {
+    .hero {
+        background-color: $color-white;
+        padding: 15px;
+        padding-top: 25px;
+        color: $color-black;
+        .tagLine{
+            font-size: 22px;
+        }
+        .registrationForm{
+            margin-top:35px;
+            .registerForm {
+                input {
+                    padding:10px;
+                    border: 1px solid $theme-color;
+                    border-radius: 2px;
+                    margin-bottom: 15px;
+                    opacity: 0.8;
+                    width: 80%;
+                    outline:none;
+                    @include boxShadow(5px, 13px, 30px, -13px, rgba(0, 0, 0, 0.75));
+                    &:focus {
+                        border: none;
+                    }
+                }
+                button {
+                    height: 40px;
+                    width: 88%;
+                    background: $theme-color;
+                    @include boxShadow(5px, 13px, 30px, -13px, rgba(0, 0, 0, 0.75));
+                    border: none;
+                    color: $color-white;
+                    font-family: monospace;
+                }
+            }
+        }
+    }
+}
