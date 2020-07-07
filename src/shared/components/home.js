@@ -1,56 +1,60 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
-import axios from 'axios';
 import '../styles/homepage.scss';
-
+import axios from 'axios';
 
 class Home extends Component {
+    
     constructor(props) {
         super(props);
-        this.state = {email: '', password: '', confirmPassword: ''};
-
-        this.handleEmail = this.handleEmail.bind(this);
-        this.handlePassword = this.handlePassword.bind(this);
-        this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);   
+        this.state = {username: '', validUser: false};
+        this.handleUserName = this.handleUserName.bind(this);
+        this.handleUserTimline = this.handleUserTimline.bind(this);
     }
 
-    handleEmail(event) {
-        this.setState({email: event.target.value});
+    handleUserName(event) {
+        this.setState({username: event.target.value});
     }
-    handlePassword(event) {
-        this.setState({password: event.target.value});
-    }
-    handleConfirmPassword() {
-        this.setState({confirmPassword: event.target.value})
-    }
-    handleSubmit(event) {
-        event.preventDefault();
-        axios.post('http://localhost:3000/user/create', {email:this.state.email, password: this.state.password})
+
+    handleUserTimline() {
+        let headers = {
+            'User-Agent': 'Github-Timeline',
+        }
+        if(this.state.username.length) {
+            let url = "https://api.github.com/users/"+this.state.username;
+            axios.get(url, {}, headers)
             .then((response) => {
-                return <Redirect to = "/timeline" />
+                this.props.history.push({
+                    pathname: '/insights',
+                    state: response.data
+                })
+                console.log(response.status);
             })
-            .catch(() => {
-                console.log('Error: Cant create user')
+            .catch((error) => {
+                console.log(error);
             })
-    }   
+        }
+    }
     render() {
-        return (
+        return(
             <div className = "homePage">
-                <div className = "hero text-center">
-                    <div className = "tagLine">Get Insights of a github repository!</div>
-                    <p>Guthub Timline provides detailed information about any public repository.</p>
-                    <div className = "registrationForm">
-                        <form onSubmit = {this.handleSubmit} name = "signupForm" className = "registerForm d-flex justify-center align-items-center flex-column">
-                            <input id = "email" placeholder = "Email" type = "text" name = "email" onChange = {this.handleEmail}/>
-                            <input id = "password" placeholder = "Password" type = "password" name = "password" onChange = {this.handlePassword}/>
-                            <input id = "confirmPassword" placeholder = "Confirm Password" type = "password" name = "confirmPassword" />
-                            <button>Sign me up</button>
-                        </form>
+                <div className = "head text-center">
+                    Enter any valid github username to get insights.
+                </div>
+                <div className = "d-flex justify-center flex-column align-items-center">
+                    <div className = "userName">
+                        <input onChange = {this.handleUserName} type = "text" placeholder = "Github Username" maxLength = "50"/>
+                    </div>
+                    <div className = "actionButtons d-flex justify-space-between align-items-center">
+                        <div className = "timlineButton">
+                            <button onClick = {this.handleUserTimline} type = "button">Show User Timeline</button>
+                        </div>
+                        <div className = "repoButton">
+                            <button type = "button">Show User Repo Insights</button>
+                        </div>
                     </div>
                 </div>
-
-            </div>)
+            </div>
+        ) 
     }
 }
 

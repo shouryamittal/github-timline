@@ -1,0 +1,52 @@
+@import './mixin/mixin';
+@import './theme';
+.loginPage {
+    .hero {
+        background-color: $color-white;
+        padding: 15px;
+        padding-top: 25px;
+        color: $color-black;
+        .tagLine{
+            font-size: 22px;
+        }
+        .registrationForm{
+            margin-top:35px;
+            .registerForm {
+                .email, .password, .cnfPassword {
+                    margin-bottom: 15px;
+                    width: 100%;
+                }
+                input {
+                    padding:10px;
+                    border: 1px solid $theme-color;
+                    border-radius: 2px;
+                    opacity: 0.8;
+                    outline:none;
+                    @include boxShadow(5px, 13px, 30px, -13px, rgba(0, 0, 0, 0.75));
+                    &:focus {
+                        border: none;
+                    }
+                }
+                button {
+                    height: 40px;
+                    background: $theme-color;
+                    @include boxShadow(5px, 13px, 30px, -13px, rgba(0, 0, 0, 0.75));
+                    border: none;
+                    color: $color-white;
+                    font-family: monospace;
+                }
+            }
+
+            .loginError {
+                height: 30px;
+                margin-top: 15px;
+                background-color: $error-color;
+                border: 1px solid $error-border;
+                .errorMsg {
+                    color: $color-white;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
