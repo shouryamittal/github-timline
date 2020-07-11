@@ -1,0 +1,15 @@
+@import './theme';
+.insights {
+    margin-top: 35px;
+    padding: 15px;
+    .ownerName {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .repos {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-row-gap: 10px;
+        grid-column-gap: 10px;
+    }
+}

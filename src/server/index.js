@@ -11,6 +11,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'));
+app.get('/favicon.ico', (req, res) => {
+    res.status(204).send();
+});
 app.use('/user', userRoutes);
 app.get("**", handleRender);
 

@@ -6,6 +6,9 @@ body {
 .d-flex {
     display: flex;
 }
+.d-grid { 
+    display: grid;
+}
 .flex-column {
     flex-direction: column;
 }
@@ -32,4 +35,23 @@ body {
 }
 .text-center {
     text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-none {
+    text-decoration: none;
+}
+
+.stretched-link{
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: auto;
+        content: "";
+        background-color: rgba(0, 0, 0, 0);
+    }
 }

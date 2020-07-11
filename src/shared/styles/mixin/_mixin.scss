@@ -3,3 +3,16 @@
     -webkit-box-shadow:$h $v $blur $spread $color;
     -moz-box-shadow:$h $v $blur $spread $color;
 }
+
+@mixin wrapText() {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@mixin twoLineText() {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

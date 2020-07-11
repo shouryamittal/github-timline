@@ -1,0 +1,119 @@
+@import './theme';
+@import './mixin/mixin';
+
+
+.repoCard {
+    height: 180px;
+    border-radius: 5px;
+    padding: 15px;
+    position: relative;
+    .name {
+        font-size: 16px;
+        @include wrapText();
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid;
+        a{
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    .status{
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    .description {
+        font-size: 12px;
+        @include twoLineText();
+        margin-bottom: 10px;
+        height: 28px;
+    }
+    .defaultBranch{
+        font-size: 12px;
+        @include wrapText();
+    }
+    .lastUpdated{
+        position: absolute;
+        bottom: 15px;
+        font-size: 12px;
+    }
+}
+
+
+.base {
+    background-color: $theme-color;
+    color: $color-white;
+    border: 1px solid $color-border;
+    a{
+        color:$color-white
+    }
+}
+.baseJava{
+    background-color: $color-java;
+    color: $color-white;
+    a{
+        color:$color-white
+    }
+}
+.baseC{
+    background-color: $color-c;
+    color: $color-white;
+    a{
+        color:$color-white
+    }
+}
+.baseJavascript {
+    background-color: $color-javascript;
+    a{
+        color:$color-black;
+    }
+}
+.basePython {
+    background-color: $color-python;
+    color: $color-white;
+    a{
+        color:$color-white;
+    }
+}
+.baseHTML {
+    background-color: $color-html;
+    a{
+        color:$color-black;
+    }
+}
+.baseCSS {
+    background-color: $color-css;
+    color: $color-white;
+    a{
+        color:$color-white;
+    }
+}
+.baseTypeScript {
+    background-color: $color-typescript;
+    color: $color-white;
+    a{
+        color:$color-white
+    }
+}
+.baseCPP {
+    background-color: $color-cpp;
+    color:$color-white;
+    a {
+        color: $color-white;
+    }
+}
+.basePHP {
+    background-color: $color-php;
+    color: $color-white;
+    a {
+        color: $color-white;
+    }
+}
+.baseRuby {
+    background-color: $color-ruby;
+    color: $color-white;
+    a {
+        color: $color-white;
+    }
+}

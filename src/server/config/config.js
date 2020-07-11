@@ -7,8 +7,6 @@ let config = {
     }
 }
 const envConfig = config[env];
-console.log( config[env])
 Object.keys(envConfig).forEach((key) => {
     process.env[key] = envConfig[key];
 });
-console.log(process.env.PORT);

@@ -24,7 +24,7 @@ class Home extends Component {
             axios.get(url, {}, headers)
             .then((response) => {
                 this.props.history.push({
-                    pathname: '/insights',
+                    pathname: '/insights/'+this.state.username,
                     state: response.data
                 })
                 console.log(response.status);

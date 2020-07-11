@@ -5,12 +5,12 @@ import Header from '../shared/components/header';
 
 function App() {
     return(
-        <div>
-            <Header/>
-            <Switch>
-                {routes.map((route, i)=> <Route key= {i} {...route}/>)}
-            </Switch>
-        </div>
+            <div>
+                <Header/>
+                <Switch>
+                    {routes.map((route, i)=> <Route exact key= {i} {...route}/>)}
+                </Switch>
+            </div>
     );
 }
 

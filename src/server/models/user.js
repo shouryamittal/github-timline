@@ -29,16 +29,13 @@ User.init({
 })
 
 User.beforeCreate(user => {
-    console.log('User being created \n');
     hashPassword(user.password)
         .then((hashedPassword) => {
-            console.log('hash', hashPassword);
             user.password = hashedPassword;
         })
         .catch((error) => {
             user.password = null;
         });
-        console.log('User', user)
 })
 
 User.sync({

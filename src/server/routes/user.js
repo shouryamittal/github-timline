@@ -3,7 +3,6 @@ import User from '../models/user';
 const router = express.Router();
 
 router.post('/create', (req, res) => {
-    console.log(req.body)
    User.create({
        email: req.body.email,
        password: req.body.password

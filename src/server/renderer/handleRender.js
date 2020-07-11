@@ -11,12 +11,14 @@ function handleRender(req, res, next) {
 
     //function will handle rendering of react app
     let activeRoute = routes.find(route => matchPath(req.url, route)) || {};
-    let promise = activeRoute.callback ? activeRoute.callback(activeRoute.apiUrl): Promise.resolve();
+    let routeInfo = matchPath(req.url, activeRoute.path);
+    let userName = routeInfo.params.username;
+    let promise = activeRoute.component.fetchInitialData ? activeRoute.component.fetchInitialData(userName): Promise.resolve();
     promise
         .then((response) => {
             let context = {response};
             let html = renderToString(
-                <StaticRouter location = {req.url} context = {context}>
+                <StaticRouter location = {req.url} context = {{data:response}}>
                     <App/>
                 </StaticRouter>
             );
