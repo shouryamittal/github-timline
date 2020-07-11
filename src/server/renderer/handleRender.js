@@ -16,7 +16,6 @@ function handleRender(req, res, next) {
     let promise = activeRoute.component.fetchInitialData ? activeRoute.component.fetchInitialData(userName): Promise.resolve();
     promise
         .then((response) => {
-            let context = {response};
             let html = renderToString(
                 <StaticRouter location = {req.url} context = {{data:response}}>
                     <App/>

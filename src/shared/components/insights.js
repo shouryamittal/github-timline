@@ -23,21 +23,14 @@ class Insights extends Component {
     }
 
     componentDidMount() {
-        console.log('called');
          if(!this.state.repos){
-             console.log('hey there is something in repos', this.state.repos)
             Insights.fetchInitialData(this.state.username)
             .then((response) => {
-                console.log("response", response);
                 this.setState({repos: response, loading: false})
-            })
-        }
-        else {
-            console.log('THere is something', this.state.repos)
+            });
         }
     }
     render() {
-        console.log("render")
         if(this.state.loading) {
             return (
                 <div className = "insights text-center">
@@ -50,7 +43,6 @@ class Insights extends Component {
         {
             let html;
             let repos = this.state.repos;
-            console.log('render:', this.state.repos)
             if(repos.length > 0) {
                 html = repos.map((repo) => {
                 return <RepoCard repoDetails = {repo} key = {repo.id} />
@@ -58,7 +50,7 @@ class Insights extends Component {
          }
             return (
                 <div className = "insights text-center">
-                    <div className = "ownerName">@ {this.state.username}</div>
+                    <div className = "ownerName">@{this.state.username}</div>
                     <div className = "repos d-grid">
                         {html}
                     </div>
@@ -71,8 +63,7 @@ class Insights extends Component {
         let headers = {
             'User-Agent' : 'Github-Timeline'
         }
-        let url = "https://api.github.com/users/"+username+"/repos"
-        console.log(url);
+        let url = "https://api.github.com/users/"+username+"/repos";
         return axios.get(url,headers)
                 .then(res => {
                     return res.data

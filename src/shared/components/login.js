@@ -27,26 +27,20 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let status = validateInput(this.state.password, this.state.confirmPassword);
-        // if(!status.status) {
-        //     this.setState({loginError: status.loginError, loginErrorMsg: status.loginErrorMsg});
-        // }
-        // else {
-            console.log('called');
-            axios.post('http://localhost:3000/user/create', {email:this.state.email, password: this.state.password})
-            .then((response) => {
+        axios.post('http://localhost:3000/user/create', {email:this.state.email, password: this.state.password})
+        .then((response) => {
 
-                
-                if(response.status == 201) {
-                    this.props.history.push('/home');
-                }
-                else {
-                    this.setState({email: '', passoword: '', confirmPassword: '', loginError: false, loginErrorMsg: responseLogger(response.status)});
-                }
-            })
-            .catch(() => {
-                console.log('Error: Cant create user')
-            })
-        // }
+            
+            if(response.status == 201) {
+                this.props.history.push('/home');
+            }
+            else {
+                this.setState({email: '', passoword: '', confirmPassword: '', loginError: false, loginErrorMsg: responseLogger(response.status)});
+            }
+        })
+        .catch(() => {
+            console.log('Error: Cant create user')
+        });
     }   
     render() {
         return (

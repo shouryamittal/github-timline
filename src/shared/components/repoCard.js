@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/repo.scss';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faDownload, faCodeBranch, faExclamationTriangle, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import { faStar,faCodeBranch, faExclamationTriangle, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 import Moment from 'react-moment';
 
 function RepoCard(props) {
+    let [state, setState] = useState([]);
     let language = props.repoDetails.language ? props.repoDetails.language : '';
     if(language === "C++"){language = "CPP";} 
     let clickOutUrl = props.repoDetails.clone_url;
@@ -14,6 +16,32 @@ function RepoCard(props) {
     let lastUpdated = props.repoDetails.updated_at;
     let defaultBranch = props.repoDetails.default_branch;
     let hasIssues = props.repoDetails.has_issues;
+    let contributorURL = props.repoDetails.contributors_url;
+    let headers = {
+        'User-Agent' : 'Github-Timeline'
+    }
+    useEffect(() => {
+        axios.get(contributorURL, headers)
+        .then((response) => {
+            setState(response.data);
+        })
+        .catch(err => setState([]))
+    },[]);
+    let html = [];
+    if(state.length) {
+        if(state.length > 3) {
+            for(let i = 0; i < 3; i++) {
+                html.push(<div key = {state[i].id} className = "contributor position-relative" title = {state[i].login}><a href = {state[i].html_url}><img src = {state[i].avatar_url} alt = {state[i].login}/></a></div>);
+            }
+            html.push(<div className = "restCount d-flex justify-center align-items-center">+{state.length - 3}</div>);
+        }
+        else {
+            for(let i = 0; i < state.length; i++) {
+                html.push(<div key = {state[i].id} className = "contributor position-relative" title = {state[i].login}><a href = {state[i].html_url}><img src = {state[i].avatar_url} alt = {state[i].login}/></a></div>);
+            }
+        }
+    }
+
     return (
         <div className = {"repoCard text-left base" + language}>
             
@@ -25,6 +53,10 @@ function RepoCard(props) {
             </div>
             <div className = "description">{description}</div>
             <div title = "Default Branch" className = "defaultBranch"><FontAwesomeIcon icon={faCodeBranch}/> : {defaultBranch}</div>
+            
+            <div className = "contributors d-flex">
+                {html}
+            </div>
             <div className = "lastUpdated">
                 Updated: <Moment format = "DD/MM/YYYY">{lastUpdated}</Moment>
             </div>

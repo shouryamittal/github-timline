@@ -26,8 +26,7 @@ class Home extends Component {
                 this.props.history.push({
                     pathname: '/insights/'+this.state.username,
                     state: response.data
-                })
-                console.log(response.status);
+                });
             })
             .catch((error) => {
                 console.log(error);
@@ -46,10 +45,10 @@ class Home extends Component {
                     </div>
                     <div className = "actionButtons d-flex justify-space-between align-items-center">
                         <div className = "timlineButton">
-                            <button onClick = {this.handleUserTimline} type = "button">Show User Timeline</button>
+                            <button  type = "button">Show User Timeline</button>
                         </div>
                         <div className = "repoButton">
-                            <button type = "button">Show User Repo Insights</button>
+                            <button onClick = {this.handleUserTimline} type = "button">Show User Repo Insights</button>
                         </div>
                     </div>
                 </div>
